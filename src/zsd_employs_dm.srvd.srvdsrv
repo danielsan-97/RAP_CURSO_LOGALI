@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service Definition Employs'
+define service ZSD_EMPLOYS_DM {
+  expose ZC_EMPLOY_DM as Empleados;
+}

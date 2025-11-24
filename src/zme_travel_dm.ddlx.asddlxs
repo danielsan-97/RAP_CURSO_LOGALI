@@ -1,0 +1,121 @@
+@Metadata.layer: #CORE
+@Search.searchable: true
+
+@UI:{
+
+      headerInfo: {
+                    typeName: 'Viaje',
+                    typeNamePlural: 'Viajes',
+
+                    title: {
+                                type: #STANDARD,
+                                value: 'travel_id_vuelos'
+                            }
+
+                  }
+
+     }
+
+
+annotate entity ZC_VUELOS with
+{
+  @UI.facet: [
+             {
+              id:'Vuelos',
+              purpose: #STANDARD,
+              type: #IDENTIFICATION_REFERENCE,
+              label: 'Vuelos',
+              position: 10
+             },
+             {
+             id:'Reservas',
+             purpose: #STANDARD,
+             type: #LINEITEM_REFERENCE,
+             label: 'Reservas',
+             position: 20,
+             targetElement: '_viejetoreserva'
+             }
+             ]
+
+  @UI:{
+          lineItem: [{
+                      position:10,
+                      importance: #HIGH
+                    }],
+           identification: [{
+                             position: 10,
+                             label: 'ID Viaje [1,...,999999]'
+                           }]
+      }
+  @Search.defaultSearchElement: true
+  travel_id_vuelos;
+
+  @UI: {
+        lineItem: [{ position: 20,
+                      importance: #HIGH
+                  }],
+        identification: [ { position: 20 } ],
+        selectionField: [ { position: 20 } ]
+        }
+  @Consumption.valueHelpDefinition: [{
+                                      entity : {name: '/DMO/I_Agency',
+                                                element: 'AgencyID' }
+                                      }]
+  agency_id;
+
+  @UI: {
+          lineItem: [ { position: 30, importance: #HIGH } ],
+          identification: [ { position: 30 } ],
+          selectionField: [ { position: 30 } ]
+       }
+  @Consumption.valueHelpDefinition: [{ entity :  {name: '/DMO/I_Customer',
+                                                  element: 'CustomerID' }
+                                    }]
+  @Search.defaultSearchElement: true
+  customer_id;
+
+  @UI: {
+         lineItem: [ { position: 40,
+                       importance: #MEDIUM
+                   } ],
+  identification: [ { position: 40 } ] }
+  begin_date;
+
+  @UI: { lineItem: [ { position: 41, importance: #MEDIUM }],
+         identification: [ { position: 41 } ] }
+  end_date;
+
+  @UI: {identification: [ { position: 42 } ] }
+  booking_fee;
+
+  @UI: {lineItem: [ { position: 43, importance: #MEDIUM } ],
+        identification: [ { position: 43, label: 'TotalPrice' } ] }
+  total_price;
+
+  @Consumption.valueHelpDefinition: [{entity: {name:'I_Currency', element: 'Currency' }}]
+  currency_code;
+
+  @UI: { identification:[ { position: 46 } ] }
+  description;
+  
+  @UI: { lineItem: [ { position: 50, importance: #MEDIUM }],
+         identification: [ { position: 50 } ] }
+  overall_status;
+
+
+  @UI: { lineItem: [ { position: 60, importance: #HIGH },
+                     { type: #FOR_ACTION, dataAction: 'copyViaje', label: 'Create Travel by Template' } ],
+  identification: [ { position: 45, 
+                      label: 'Status [O(Open)|A(Accepted)|X(Canceled)]' } ] }
+  
+
+    
+  
+  //@UI.hidden: true
+  last_change_at;
+  
+  @UI: { lineItem: [ { position: 70, importance: #HIGH } ] }
+  @EndUserText.label: 'Descuentazo 10%'
+  DiscauntPrice;
+
+}

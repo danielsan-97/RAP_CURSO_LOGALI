@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>Z_MC_RAP_DM</ARBGB>
+    <MASTERLANG>S</MASTERLANG>
+    <STEXT>Clase de mensaje para curso de rap logali</STEXT>
+   </T100A>
+   <T100>
+    <T100>
+     <SPRSL>S</SPRSL>
+     <ARBGB>Z_MC_RAP_DM</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>El customer esta mal sea serio &amp;1 popnga algo valido</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>S</SPRSL>
+     <ARBGB>Z_MC_RAP_DM</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT> Fecha de arranque &amp;1 no debe estar despues de &amp;2 para el viaje &amp;3</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>S</SPRSL>
+     <ARBGB>Z_MC_RAP_DM</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Fecha de comienzo debe ser igual a fecha actual o despues</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>S</SPRSL>
+     <ARBGB>Z_MC_RAP_DM</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Estatus no valido &amp;1, ponga  O mi social</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>S</SPRSL>
+     <ARBGB>Z_MC_RAP_DM</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Viaje &amp;1 Aceptado</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>S</SPRSL>
+     <ARBGB>Z_MC_RAP_DM</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>Viaje &amp;1 Rechazado</TEXT>
+    </T100>
+    <T100>
+     <SPRSL>S</SPRSL>
+     <ARBGB>Z_MC_RAP_DM</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>Estatus no valido para reserva &amp;1</TEXT>
+    </T100>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

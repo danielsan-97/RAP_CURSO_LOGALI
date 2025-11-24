@@ -1,0 +1,18 @@
+unmanaged implementation in class z_cl_bp_i_hcm_dm unique;
+strict ( 2 );
+
+define behavior for ZI_HCM_DM alias HCMASTER
+//late numbering
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) employ_number;
+  field (mandatory : create) empoloy_name;
+
+//  mapping for zhr_master_dm corresponding;
+
+}

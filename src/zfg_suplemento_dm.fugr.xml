@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_FUGR" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <AREAT>Suplemento actualizar</AREAT>
+   <INCLUDES>
+    <SOBJ_NAME>LZFG_SUPLEMENTO_DMTOP</SOBJ_NAME>
+    <SOBJ_NAME>SAPLZFG_SUPLEMENTO_DM</SOBJ_NAME>
+   </INCLUDES>
+   <FUNCTIONS>
+    <item>
+     <FUNCNAME>Z_SUPLEMENTOP</FUNCNAME>
+     <SHORT_TEXT>Actualizar suplemnto del rap</SHORT_TEXT>
+     <IMPORT>
+      <RSIMP>
+       <PARAMETER>IT_SUPLEMENTOS</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZTT_SUPLEMETO</TYP>
+      </RSIMP>
+      <RSIMP>
+       <PARAMETER>IV_OP_TYPE</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZDE_FLAG_DM</TYP>
+      </RSIMP>
+     </IMPORT>
+     <EXPORT>
+      <RSEXP>
+       <PARAMETER>EV_UPDATE</PARAMETER>
+       <REFERENCE>X</REFERENCE>
+       <TYP>ZDE_FLAG_DM</TYP>
+      </RSEXP>
+     </EXPORT>
+     <DOCUMENTATION>
+      <RSFDO>
+       <PARAMETER>IT_SUPLEMENTOS</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>IV_OP_TYPE</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+      <RSFDO>
+       <PARAMETER>EV_UPDATE</PARAMETER>
+       <KIND>P</KIND>
+      </RSFDO>
+     </DOCUMENTATION>
+    </item>
+   </FUNCTIONS>
+  </asx:values>
+ </asx:abap>
+</abapGit>

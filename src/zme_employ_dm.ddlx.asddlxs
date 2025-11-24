@@ -1,0 +1,89 @@
+@Metadata.layer: #CORE
+@Search.searchable: true
+
+@UI: { headerInfo: { typeName: 'Empleado',
+                     typeNamePlural: 'Empleados',
+                     title:{ type: #STANDARD,
+                             label: 'Empleados',
+                             value: 'empoloy_name'  }
+                    }
+     }
+annotate entity ZC_EMPLOY_DM with
+{
+  @UI.facet: [{ id: 'Empleados',
+             purpose: #STANDARD,
+             type: #IDENTIFICATION_REFERENCE,
+             label: 'Empleado',
+             position: 10 }]
+  @Search.defaultSearchElement: true
+  @UI:{ lineItem: [{ position: 10, label: 'Numero Empleado' }],
+        identification: [{ position: 10, label: 'Numero Empleado' }]
+      }
+  employ_number;
+
+  @UI:{ lineItem: [{ position: 20, label: 'Nombre Empleado', importance: #HIGH }],
+      identification: [{ position: 20, label: 'Nombre Empleado' }],
+      selectionField: [{ position: 10 }]
+    }
+  empoloy_name;
+
+  @UI:{ lineItem: [{ position: 30, label: 'Departamento Empleado' }],
+      identification: [{ position: 30, label: 'Departamento Empleado' }],
+      selectionField: [{ position: 20 }]
+    }
+  employ_department;
+
+  @UI:{ lineItem: [{ position: 40, label: 'Status' }],
+        identification: [{ position: 40, label: 'Status' }],
+        selectionField: [{ position: 30 }]
+      }
+  status;
+
+  @UI:{ lineItem: [{ position: 50, label: 'Cargo' }],
+        identification: [{ position: 50, label: 'Cargo' }]
+      }
+  job_title;
+
+  @UI:{ lineItem: [{ position: 60, label: 'Fecha inicio' }],
+          identification: [{ position: 60, label: 'Fecha inicioi' }]
+      }
+  start_date;
+
+  @UI:{ lineItem: [{ position: 70, label: 'Fecha final' }],
+        identification: [{ position: 70, label: 'Fecha final' }]
+    }
+  end_date;
+
+  @UI:{ lineItem: [{ position: 80, label: 'Email' }],
+        identification: [{ position: 80, label: 'Email' }]
+    }
+  email;
+
+  @UI:{ lineItem: [{ position: 90, label: 'Numero Manager' }],
+        identification: [{ position: 90, label: 'Numero Manager' }]
+    }
+  manage_number;
+
+  @UI:{ lineItem: [{ position: 100, label: 'Nombre Manager' }],
+        identification: [{ position: 100, label: 'Nombre Manager' }]
+    }
+  manage_name;
+
+  @UI:{ lineItem: [{ position: 110, label: 'Departamento Manager' }],
+        identification: [{ position: 110, label: 'Departamento Manager' }]
+    }
+  manage_department;
+
+  @UI.hidden: true
+  crea_date_time;
+
+  @UI.hidden: true
+  crea_uname;
+
+  @UI.hidden: true
+  last_change_time;
+
+  @UI.hidden: true
+  last_change_uname;
+
+}

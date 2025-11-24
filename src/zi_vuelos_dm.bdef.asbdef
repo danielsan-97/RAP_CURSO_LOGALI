@@ -1,0 +1,82 @@
+managed implementation in class z_cl_bp_i_vuelos_dm unique;
+strict ( 2 );
+
+define behavior for ZI_VUELOS_DM alias viajecitobd
+//implementation in class z_cl_bp_i_vuelo_dm unique
+persistent table zdm_vuelos_dm
+with additional save
+lock master
+authorization master ( instance )  //esto es para ver si los ususaqrios tienen autorizacion o permisos para hacer algo
+etag master last_change_at
+{
+  create ( authorization : global );
+  update;
+  delete;
+  association _viejetoreserva { create ( features: instance ); }
+  //Estaticos
+  field ( readonly ) last_change_at, last_changed_by, created_at, created_by; //travel_id_vuelos
+  field ( mandatory : create ) travel_id_vuelos, agency_id, overall_status, booking_fee, currency_code;
+  //Dinamico
+  field ( features : instance ) travel_id_vuelos, overall_status;
+
+
+  //Validaciones
+  validation validarCustomer on save { create; field customer_id; }
+  validation validarFecha on save { create; field begin_date, end_date; }
+  validation validateStatusv on save { create; field overall_status; }
+
+  //Acciones
+  action ( features : instance ) aceptarViaje result [1] $self;
+  action ( features : instance ) rechazarViaje result [1] $self;
+
+  action copyViaje result [1] $self;
+
+  mapping for zdm_vuelos_dm corresponding;
+
+}
+
+define behavior for ZI_RESERVAS_DM alias reservitasbd
+//implementation in class z_cl_bp_i_reserva_dm unique
+persistent table zdm_reservas_dm
+lock dependent by _reservatovuelo
+authorization dependent by _reservatovuelo
+etag master last_change_at
+{
+  update;
+  delete;
+  field ( readonly ) travel_id_reservas;
+  field ( readonly : update ) booking_id_reserva;
+  field ( mandatory : create ) booking_id_reserva, carrier_id, connection_id, flight_date, booking_status;
+  association _reservatovuelo;
+  association _reservatosuplemento { create ( features: instance ); }
+
+  //validatcion
+  validation validateStatusr on save { create;  field booking_status; }
+
+  //Determinacion
+  determination calcularPrecioVuelo on modify { field flight_price, currency_code; }
+
+  mapping for zdm_reservas_dm corresponding;
+
+}
+
+define behavior for ZI_SUPLEMENTO_DM alias suplementicobd
+//implementation in class z_cl_bp_i_suplemento_dm unique
+with unmanaged save
+lock dependent by _asovuelos
+authorization dependent by _asovuelos
+etag master last_change_at
+{
+  update;
+  delete;
+  field ( readonly ) travel_id_suplementos, booking_id_suplemento;
+  field ( readonly : update ) suplemento_id;
+  field ( mandatory : create ) supplement_id, price;
+  association _asovuelos;
+  association _suplementotoreserva;
+
+  //Determinacion
+  determination calcularSuplemeto on modify { field price, currency; }
+
+  mapping for zdm_log corresponding;
+}

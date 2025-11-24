@@ -1,0 +1,24 @@
+managed implementation in class zbp_i_employ_dm unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZI_EMPLOY_DM //alias <alias_name>
+persistent table zhr_employ_dm
+draft table zhr_employ_dm_d
+lock master total etag last_change_time
+authorization master ( instance )
+etag master last_change_time
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly, numbering : managed ) employ_number;
+
+//  esto no esta en el video pero lo pide el framework
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+}

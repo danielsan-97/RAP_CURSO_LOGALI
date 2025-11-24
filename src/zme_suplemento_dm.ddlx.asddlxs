@@ -1,0 +1,56 @@
+@Metadata.layer: #CORE
+@Search.searchable: true
+
+@UI:{
+
+      headerInfo: {
+                    typeName: 'Suplemeto',
+                    typeNamePlural: 'ResSuplemetos de reservas',
+
+                    title: {
+                                type: #STANDARD,
+                                label: 'Suplemento de reserva',
+                                value: 'booking_id_suplemento'
+                            }
+                  }
+     }
+
+annotate entity ZC_SUPLEMENTO_DM with
+{
+  @UI.facet: [
+             {
+              id:'Suplementos',
+              purpose: #STANDARD,
+              type: #IDENTIFICATION_REFERENCE,
+              label: 'Suplemento de reserva',
+              position: 10
+             }]
+  @Search.defaultSearchElement: true
+  travel_id_suplementos;
+
+  @Search.defaultSearchElement: true
+  booking_id_suplemento;
+  
+  @UI: { lineItem: [ { position: 10, importance: #HIGH } ],
+         identification: [ { position: 10 } ] }
+  suplemento_id;
+  
+  @UI: { lineItem: [ { position: 20, importance: #HIGH } ],
+         identification: [ { position: 20 } ] }
+  @Consumption.valueHelpDefinition: [ {entity: {name: '/DMO/I_SUPPLEMENT', element: 'SupplementID'
+  } ,
+  additionalBinding: [ { localElement: 'Price', element: 'Price' },
+  { localElement: 'currency', element: 'CurrencyCode' }] }]
+  supplement_id;
+  
+  @UI: { lineItem: [ { position: 30, importance: #HIGH } ],
+  identification: [ { position: 30 } ] }
+  price;
+  
+  @Consumption.valueHelpDefinition: [{entity: {name: 'I_Currency', element: 'Currency' }}]
+  currency;
+  
+//  @UI.hidden: true
+//  lastchangedat;
+
+}

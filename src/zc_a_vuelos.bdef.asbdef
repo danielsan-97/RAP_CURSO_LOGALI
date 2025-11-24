@@ -1,0 +1,24 @@
+projection;
+strict ( 2 );
+
+define behavior for ZC_A_VUELOS alias aprobaVuelos
+use etag
+{
+//    use create;
+//    use update;
+//    use delete;
+
+  use action aceptarViaje;
+  use action rechazarViaje;
+//  use action copyViaje;
+
+  //  use association _viejetoreserva { create; }
+}
+
+//define behavior for ZC_A_RESERVA_DM //alias <alias_name>
+//{
+//  use update;
+//  use delete;
+//
+//  use association _reservatovuelo;
+//}

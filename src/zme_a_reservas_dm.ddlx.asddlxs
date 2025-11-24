@@ -1,0 +1,71 @@
+@Metadata.layer: #CORE
+@Search.searchable: true
+
+@UI:{
+
+      headerInfo: {
+                    typeName: 'Reserva',
+                    typeNamePlural: 'Reservas',
+
+                    title: {
+                                type: #STANDARD,
+                                label: 'Reserva',
+                                value: 'booking_id_reserva'
+                            }
+                  }
+     }
+annotate entity ZC_A_RESERVA_DM with
+{
+  @UI.facet: [
+             {
+              id:'Reservas',
+              purpose: #STANDARD,
+              type: #IDENTIFICATION_REFERENCE,
+              label: 'Reservas',
+              position: 10
+             }
+             ]
+  @Search.defaultSearchElement: true
+  travel_id_reservas;
+
+  @UI: { lineItem: [ { position: 20, importance: #HIGH } ],
+                       identification: [ { position: 20 } ] }
+  @Search.defaultSearchElement: true
+  booking_id_reserva;
+
+  @UI: { lineItem: [ { position: 30, importance: #HIGH } ],
+         identification: [ { position: 30 } ] }
+  booking_date;
+
+  @UI: { lineItem: [ { position: 40, importance: #HIGH } ],
+                       identification: [ { position: 40 } ],
+                        selectionField: [{ position: 10 }]
+       }
+  @Search.defaultSearchElement: true
+  customer_id;
+
+  @UI: { lineItem: [ { position: 50, importance: #HIGH } ],
+  identification: [ { position: 50 } ] }
+  carrier_id;
+
+  @UI: { lineItem: [ { position: 60, importance: #HIGH } ],
+         identification: [ { position: 60 } ] }
+  connection_id;
+
+  @UI: { lineItem: [ { position: 70, importance: #HIGH } ],
+         identification: [ { position: 70 } ] }
+  flight_date;
+
+  @UI: { lineItem: [ { position: 80, importance: #HIGH } ],
+         identification: [ { position: 80 } ] }
+  flight_price;
+
+  @UI: { lineItem: [ { position: 90, importance: #HIGH, label: 'Status' } ],
+  identification: [ { position: 90, label: 'Status [N(New)| X(Canceled)| B(Booked)]' } ] }
+  booking_status;
+
+
+  @UI.hidden: true
+  last_change_at;
+
+}

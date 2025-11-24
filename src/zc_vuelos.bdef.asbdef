@@ -1,0 +1,35 @@
+projection;
+strict ( 2 );
+
+define behavior for ZC_VUELOS alias vuelosProceso
+ use etag
+{
+  field (readonly) total_price;
+  use create;
+  use update;
+  use delete;
+
+//  use action aceptarViaje;
+//  use action rechazarViaje;
+  use action copyViaje;
+
+  use association _viejetoreserva { create; }
+}
+
+define behavior for ZC_RESERVAS alias reservaProceso
+{
+  use update;
+  use delete;
+
+  use association _reservatovuelo;
+  use association _reservatosuplemento { create; }
+}
+
+define behavior for ZC_SUPLEMENTO_DM alias suplementoProceso
+{
+  use update;
+  use delete;
+
+  use association _asovuelos;
+  use association _suplementotoreserva;
+}

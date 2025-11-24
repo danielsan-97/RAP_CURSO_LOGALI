@@ -1,0 +1,15 @@
+@EndUserText.label: 'Service Definition travel'
+define service ZSD_VIAJES_DM {
+  expose ZC_VUELOS             as Vuelos;
+  expose ZC_RESERVAS           as Reservas;
+  expose ZC_SUPLEMENTO_DM      as Suplemento;
+  expose /DMO/I_Supplement     as DMOsuplemento;
+  expose /DMO/I_SupplementText as DMOSUPLEMENTEXT;
+  expose /DMO/I_Customer       as DMOPASAJERO;
+  expose /DMO/I_Agency         as DMOAGENCY;
+  expose /DMO/I_Carrier        as DMOAEROLINEA;
+  expose /DMO/I_Connection     as DEMOVUELOCONEXION;
+  expose /DMO/I_Flight         as DEMOVUELOS;
+  expose I_Currency            as CURRENCY;
+  expose I_Country             as COUNTRY;
+}

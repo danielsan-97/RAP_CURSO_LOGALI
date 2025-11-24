@@ -1,0 +1,8 @@
+@EndUserText.label: 'Service Definition Viajes Aprobar'
+define service ZSD_A_VIAJES_DM {
+  expose ZC_A_VUELOS     as APROVUELOS;
+  expose ZC_A_RESERVA_DM as APRORESERVA;
+  expose /DMO/I_Customer as DMOPASAJERO;
+  expose /DMO/I_Agency   as DMOAGENCY;
+  expose I_Currency      as CURRENCY;
+}
