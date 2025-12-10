@@ -166,6 +166,25 @@ CLASS lhc_viajecitobd IMPLEMENTATION.
                                 description         = 'Agregue comentario'
                                 overall_status      = 'O' ) ).
 
+    "Este es el modifyu tal cual el video d elogali, da error
+*    MODIFY ENTITIES OF zi_vuelos_dm IN LOCAL MODE
+*       ENTITY viajecitobd
+*       CREATE FIELDS ( travel_id_vuelos
+*                       agency_id
+*                       customer_id
+*                       begin_date
+*                       end_date
+*                       booking_fee
+*                       total_price
+*                       currency_code
+*                       description
+*                       overall_status )
+*               WITH lt_create_vuelo
+*               MAPPED mapped
+*               FAILED failed
+*               REPORTED reported.
+    "hasta aqui va lo del
+
     MODIFY ENTITIES OF zi_vuelos_dm IN LOCAL MODE
        ENTITY viajecitobd
        CREATE FIELDS ( travel_id_vuelos
@@ -178,7 +197,19 @@ CLASS lhc_viajecitobd IMPLEMENTATION.
                        currency_code
                        description
                        overall_status )
-               WITH lt_create_vuelo
+               WITH VALUE #( (
+                                %cid = '10' "este cid es importante, si no no funciona
+                                travel_id_vuelos    = lv_vuelo_max + 1
+                                agency_id           = '009'
+                                customer_id         = '583'
+                                begin_date          = lv_elhoy
+                                end_date            = lv_elhoy + 30
+*                                booking_fee         = resultado-booking_fee
+*                                total_price         = resultado-total_price
+*                                currency_code       = resultado-currency_code
+                                description         = 'Prueba copia'
+                                overall_status      = 'O'
+                             )  )
                MAPPED mapped
                FAILED failed
                REPORTED reported.
@@ -611,35 +642,35 @@ CLASS lsc_ZI_VUELOS_DM IMPLEMENTATION.
           lv_op_type    TYPE zde_flag_dm,
           lv_update     TYPE zde_flag_dm.
 
-    if not create-suplementicobd is initial.
-        lt_suplements = corresponding #( create-suplementicobd ).
-        lv_op_type = lsc_zi_vuelos_dm=>create.
+    IF NOT create-suplementicobd IS INITIAL.
+      lt_suplements = CORRESPONDING #( create-suplementicobd ).
+      lv_op_type = lsc_zi_vuelos_dm=>create.
     ENDIF.
 
-    if not update-suplementicobd is initial.
-        lt_suplements = corresponding #( update-suplementicobd ).
-        lv_op_type = lsc_zi_vuelos_dm=>update.
+    IF NOT update-suplementicobd IS INITIAL.
+      lt_suplements = CORRESPONDING #( update-suplementicobd ).
+      lv_op_type = lsc_zi_vuelos_dm=>update.
     ENDIF.
 
-    if not delete-suplementicobd is initial.
-        lt_suplements = corresponding #( delete-suplementicobd ).
-        lv_op_type = lsc_zi_vuelos_dm=>delete.
+    IF NOT delete-suplementicobd IS INITIAL.
+      lt_suplements = CORRESPONDING #( delete-suplementicobd ).
+      lv_op_type = lsc_zi_vuelos_dm=>delete.
     ENDIF.
 
-    if not lt_suplements is initial.
+    IF NOT lt_suplements IS INITIAL.
 
-        CAll FUNCTION 'Z_SUPLEMENTOP'
-          EXPORTING
-            it_suplementos = lt_suplements
-            iv_op_type     = lv_op_type
-          IMPORTING
-            ev_update      = lv_update.
+      CALL FUNCTION 'Z_SUPLEMENTOP'
+        EXPORTING
+          it_suplementos = lt_suplements
+          iv_op_type     = lv_op_type
+        IMPORTING
+          ev_update      = lv_update.
 
-       if lv_update eq abap_true.
+      IF lv_update EQ abap_true.
 
 *            reported-suplementicobd "aqui se puede implementar logica para mensajes y otras cosas
 
-       ENDIF.
+      ENDIF.
 
     ENDIF.
 
